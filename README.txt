@@ -6,7 +6,7 @@ this module template code.
 
 * Unzip the archive and read this file. (so far so good eh)
 
-* Rename the NEWTEMPLATE/ folder to the name of your module (eg "widget").
+* Rename the uqamprint/ folder to the name of your module (eg "widget").
   The plugin folder MUST be lower case and can't contain underscores.
   You should check the Moodle plugin repository at
   https://moodle.org/plugins/browse.php?list=category&id=53 to confirm that
@@ -15,16 +15,16 @@ this module template code.
   for you.
 
 * Edit all the files in this directory and its subdirectories and change
-  all the instances of the string "NEWTEMPLATE" to your atto plugin name
+  all the instances of the string "uqamprint" to your atto plugin name
   (eg "widget"). Don't do this manually. Use an IDE or a programmers text
   editor like TextWrangler (mac) or Notepad++ (pc)
   If you are using Linux, you could also use the following command
-  $ find . -type f -exec sed -i 's/NEWTEMPLATE/widget/g' {} \;
+  $ find . -type f -exec sed -i 's/uqamprint/widget/g' {} \;
 
   On a mac, use:
-  $ find . -type f -exec sed -i '' 's/NEWTEMPLATE/widget/g' {} \;
+  $ find . -type f -exec sed -i '' 's/uqamprint/widget/g' {} \;
 
-* Rename the file lang/en/atto_NEWTEMPLATE.php to lang/en/atto_widget.php
+* Rename the file lang/en/atto_uqamprint.php to lang/en/atto_widget.php
   where "widget" is the name of your atto plugin
 
 * Place the plugin folder folder into the /lib/editor/atto/plugins folder of the moodle

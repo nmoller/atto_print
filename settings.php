@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * NEWTEMPLATE settings.
+ * uqamprint settings.
  *
- * @package   atto_NEWTEMPLATE
+ * @package   atto_uqamprint
  * @copyright COPYRIGHTINFO
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -25,11 +25,11 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$ADMIN->add('editoratto', new admin_category('atto_NEWTEMPLATE', new lang_string('pluginname', 'atto_NEWTEMPLATE')));
+$ADMIN->add('editoratto', new admin_category('atto_uqamprint', new lang_string('pluginname', 'atto_uqamprint')));
 
-$settings = new admin_settingpage('atto_NEWTEMPLATE_settings', new lang_string('settings', 'atto_NEWTEMPLATE'));
+$settings = new admin_settingpage('atto_uqamprint_settings', new lang_string('settings', 'atto_uqamprint'));
 if ($ADMIN->fulltree) {
 	// An option setting
-	$settings->add(new admin_setting_configtext('atto_NEWTEMPLATE/defaultflavor', 
-		get_string('defaultflavor', 'atto_NEWTEMPLATE'), '', 'vanilla', PARAM_TEXT));
+	$settings->add(new admin_setting_configtext('atto_uqamprint/defaultflavor',
+		get_string('defaultflavor', 'atto_uqamprint'), '', 'vanilla', PARAM_TEXT));
 }
