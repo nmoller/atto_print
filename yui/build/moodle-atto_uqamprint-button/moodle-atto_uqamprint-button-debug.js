@@ -34,16 +34,11 @@ YUI.add('moodle-atto_uqamprint-button', function (Y, NAME) {
  */
 
 var COMPONENTNAME = 'atto_uqamprint';
-var FLAVORCONTROL = 'uqamprint_flavor';
-var LOGNAME = 'atto_uqamprint';
 
 var CSS = {
         INPUTSUBMIT: 'atto_media_urlentrysubmit',
         INPUTCANCEL: 'atto_media_urlentrycancel',
         FLAVORCONTROL: 'flavorcontrol'
-    },
-    SELECTORS = {
-        FLAVORCONTROL: '.flavorcontrol'
     };
 
 var TEMPLATE = '' +
@@ -65,18 +60,24 @@ Y.namespace('M.atto_uqamprint').Button = Y.Base.create('button', Y.M.editor_atto
             return;
         }
 
-        var twoicons = ['print'];
+        this.addButton({
+            icon: 'ed/print',
+            iconComponent: 'atto_uqamprint',
+            callback: this._displayDialogue
+        });
 
-        Y.Array.each(twoicons, function(theicon) {
+        //var twoicons = ['print'];
+
+        //Y.Array.each(twoicons, function(theicon) {
             // Add the uqamprint icon/buttons
-            this.addButton({
-                icon: 'ed/' + theicon,
-                iconComponent: 'atto_uqamprint',
-                buttonName: theicon,
-                callback: this._displayDialogue,
-                callbackArgs: theicon
-            });
-        }, this);
+            //this.addButton({
+            //    icon: 'ed/' + theicon,
+           //     iconComponent: 'atto_uqamprint',
+            //    buttonName: theicon,
+            //    callback: this._displayDialogue,
+           //     callbackArgs: theicon
+           // });
+        //}, this);
 
     },
 
@@ -88,15 +89,14 @@ Y.namespace('M.atto_uqamprint').Button = Y.Base.create('button', Y.M.editor_atto
      * @method _displayDialogue
      * @private
      */
-    _displayDialogue: function(e, clickedicon) {
+    _displayDialogue: function(e) {
         e.preventDefault();
         var width=400;
 
 
         var dialogue = this.getDialogue({
             headerContent: M.util.get_string('dialogtitle', COMPONENTNAME),
-            width: width + 'px',
-            focusAfterHide: clickedicon
+            width: width + 'px'
         });
 		//dialog doesn't detect changes in width without this
 		//if you reuse the dialog, this seems necessary
@@ -105,7 +105,7 @@ Y.namespace('M.atto_uqamprint').Button = Y.Base.create('button', Y.M.editor_atto
         }
 
         //append buttons to iframe
-        var buttonform = this._getFormContent(clickedicon);
+        var buttonform = this._getFormContent();
 
         var bodycontent =  Y.Node.create('<div></div>');
         bodycontent.append(buttonform);
@@ -125,14 +125,12 @@ Y.namespace('M.atto_uqamprint').Button = Y.Base.create('button', Y.M.editor_atto
      * @return {Node} The content to place in the dialogue.
      * @private
      */
-    _getFormContent: function(clickedicon) {
+    _getFormContent: function() {
         var template = Y.Handlebars.compile(TEMPLATE),
             content = Y.Node.create(template({
                 elementid: this.get('host').get('elementid'),
                 CSS: CSS,
-                FLAVORCONTROL: FLAVORCONTROL,
-                component: COMPONENTNAME,
-                clickedicon: clickedicon
+                component: COMPONENTNAME
             }));
 
         this._form = content;
@@ -161,7 +159,7 @@ Y.namespace('M.atto_uqamprint').Button = Y.Base.create('button', Y.M.editor_atto
         mywindow.document.write('</body></html>');
 
         mywindow.document.close();
-        mywindow.focus()
+        mywindow.focus();
         mywindow.print();
         mywindow.close();
         this.markUpdated();
