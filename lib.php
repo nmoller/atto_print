@@ -57,10 +57,10 @@ function atto_uqamprint_params_for_js($elementid, $options, $fpoptions) {
     */
 
     //add our default flavor
-    $params['defaultflavor'] = get_config('atto_uqamprint','defaultflavor');
+    $show_in = explode(',', get_config('atto_uqamprint','defaultflavor'));
 
     //We can define a whitelist of modules
-    $params['uqmodule'] = ['journal', 'test'];
+    $params['uqmodule'] = $show_in;
 
     return $params;
 }
