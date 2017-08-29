@@ -53,9 +53,21 @@ Y.namespace('M.atto_uqamprint').Button = Y.Base.create('button', Y.M.editor_atto
      */
     initializer: function() {
         // If we don't have the capability to view then give up.
+        /*
         if (this.get('disabled')){
             return;
         }
+        */
+        var component = Y.config.doc.activeElement.id;
+        var mycomp = component.split('-');
+        // Only when we are editing the content.
+        if (mycomp[2] !== 'journal') {
+            return;
+        }
+        if (mycomp[3] !== 'edit') {
+            return;
+        }
+        Y.log(mycomp[2], 'warning', 'uqamprint');
 
         this.addButton({
             icon: 'ed/print',
