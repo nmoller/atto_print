@@ -44,41 +44,23 @@ function atto_uqamprint_strings_for_js() {
  * @return array of additional params to pass to javascript init function for this module.
  */
 function atto_uqamprint_params_for_js($elementid, $options, $fpoptions) {
-	global $USER, $COURSE, $PAGE;
-	//coursecontext
-	$coursecontext=context_course::instance($COURSE->id);	
-	
-	//usercontextid
-	$usercontextid=context_user::instance($USER->id)->id;
-	$disabled=false;
+    $disabled=false;
 	
 	//config our array of data
 	$params = array();
-	$params['usercontextid'] = $usercontextid;
 
     //If they don't have permission don't show it
+    /*
     if(!has_capability('atto/uqamprint:visible', $coursecontext) ){
         $disabled=true;
      }
-
-
+    */
 
     //add our default flavor
     $params['defaultflavor'] = get_config('atto_uqamprint','defaultflavor');
 
-    //if (isset($PAGE->cm) && $PAGE->cm->modname === 'journal') {
-    $params['uqmodule'] = false;
-    /*
-    if (isset($PAGE->cm) ) {
-        $params['module'] = 'test';
-        $disabled = false;
-    }
-    else {
-        $disabled = true;
-    }
-    */
-    //add our disabled param
-    $params['disabled'] = false; //$disabled;
+    //We can define a whitelist of modules
+    $params['uqmodule'] = ['journal', 'test'];
 
     return $params;
 }
